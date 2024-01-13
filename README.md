@@ -26,6 +26,8 @@ Personalized Healthcare is an advanced healthcare solution that embraces the pri
 - FAB+ (PERSONAL HEALTHCARE): https://ankithbangre-ab-nc-2003.on.drv.tw/WEB/fph.html
 - By © FAB 2023-24. All rights reserved
 - AB - NC
+- Welcome to FAB+ Personal Healthcare (V 2.4). This is the testing phase developed by FAB (AB - NC) where we are experimenting and refining our features. Explore, enjoy, and stay tuned for more updates!
+- "Our advanced healthcare platform is adept at detecting and diagnosing over 850+ diseases, ensuring comprehensive and accurate support for your health needs."
 - Developed by ANKITH KR
 - FAB: https://ankithbangre-ab-nc-2003.on.drv.tw/WEB/index_fab.html
 
