@@ -16,17 +16,24 @@ const SymptomChecker = () => {
       .then((csvData) => {
         const rows = csvData.split('\n');
         const matchedSuggestions = rows
-          .filter((row) => row.includes(inputSymptoms))
-          .map((row) => row.split(',')[0]);
+          .filter((row) => row.toLowerCase().includes(inputSymptoms.toLowerCase()))
+          .map((row) => capitalizeFirstLetter(row.split(',')[0].trim().toLowerCase()));
 
         const relatedDiseases = rows
           .slice(0, 5)
-          .map((row) => row.split(',')[0])
-          .filter((disease) => disease !== inputSymptoms);
+          .map((row) => capitalizeFirstLetter(row.split(',')[0].trim().toLowerCase()))
+          .filter((disease) => disease !== inputSymptoms.toLowerCase());
 
         setSuggestions([...new Set([...matchedSuggestions, ...relatedDiseases])]);
       })
       .catch((error) => console.error('Error updating suggestions:', error));
+  };
+
+  const capitalizeFirstLetter = (sentence) => {
+    return sentence
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   };
 
   const handleSuggestionsClick = (suggestion) => {
@@ -59,7 +66,7 @@ const SymptomChecker = () => {
       const rows = csvData.split('\n');
       const matchingRow = rows.find((row) => {
         const [csvSymptoms, csvDisease, csvPrecaution, csvDrug] = row.split(',');
-        return csvSymptoms === symptoms;
+        return csvSymptoms.toLowerCase() === symptoms.toLowerCase();
       });
 
       setPrediction('');
@@ -68,9 +75,9 @@ const SymptomChecker = () => {
 
       if (matchingRow) {
         const [, csvDisease, csvPrecaution, csvDrug] = matchingRow.split(',');
-        animateText(csvDisease, setPrediction);
-        animateText(csvPrecaution, setPrecaution);
-        animateText(csvDrug, setDrug);
+        animateText(capitalizeFirstLetter(csvDisease), setPrediction);
+        animateText(capitalizeFirstLetter(csvPrecaution), setPrecaution);
+        animateText(capitalizeFirstLetter(csvDrug), setDrug);
       } else {
         animateText('Prediction not found', setPrediction);
       }
@@ -103,7 +110,7 @@ const SymptomChecker = () => {
 
   return (
     <div>
-      <h1 className='h'>PERSONAL HEALTHCARE</h1>
+      <h1 className="h">PERSONAL HEALTHCARE</h1>
       <label>
         Enter your Disease Name:
         <input
@@ -132,28 +139,29 @@ const SymptomChecker = () => {
       {symptoms && (
         <div>
           <h2>Disease Name</h2>
-          <p>{symptoms}</p>
+          <p>{capitalizeFirstLetter(symptoms)}</p>
         </div>
       )}
 
       {prediction && (
         <div>
           <h2>Symptom:</h2>
-          <p>{prediction}</p>
+          <p>{capitalizeFirstLetter(prediction)}</p>
           <h2>Precaution:</h2>
-          <p>{precaution}</p>
+          <p>{capitalizeFirstLetter(precaution)}</p>
           <h2>Drug to Cure the Disease:</h2>
-          <p>{drug}</p>
+          <p>{capitalizeFirstLetter(drug)}</p>
         </div>
       )}
 
       {randomDisease && (
         <div>
-          <p class='ts' 
+          <p
+            className="ts"
             style={{ cursor: 'pointer', textDecoration: 'none', color: 'black' }}
             onClick={handleRandomDiseaseClick}
           >
-            Top Search: {randomDisease}
+            Top Search: {capitalizeFirstLetter(randomDisease)}
           </p>
         </div>
       )}
@@ -168,5 +176,4 @@ document.addEventListener('keydown', function (event) {
     document.getElementById('searchBox').focus();
   }
 });
-
 export default SymptomChecker;
