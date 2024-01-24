@@ -2,7 +2,7 @@
 # FAB+ (PERSONAL HEALTHCARE)
 # Personalized Healthcare
 
-![FAB+ (PERSONAL HEALTHCARE) Logo](https://drive.google.com/uc?export=download&id=1Ar1wsJwc40H5z4XAN6qOmWFmhFe-HpA3)
+![FAB+ (PERSONAL HEALTHCARE) Logo](https://i.ibb.co/C8DW5NW/FAB.png)
 
 ## Overview
 
